@@ -1,0 +1,15 @@
+{
+  "id": "meals",
+  "data": [
+    {
+      "name": "breakfast",
+      "time": "0700",
+      "servings": 2
+    },
+    {
+      "name": "dinner",
+      "time": "1800",
+      "servings": 2
+    }
+  ]
+}
