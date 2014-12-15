@@ -5,6 +5,7 @@ from enum import Enum
 import datetime
 
 class State(Enum):
+	 PRE_INIT = -1
 	 WAITING_FOR_MEALTIME = 0
 	 WAITING_FOR_TRIGGER_RELEASE = 1
 	 WAITING_FOR_TRIGGER_PUSH = 2
@@ -30,7 +31,7 @@ class FeedController():
 
 	def __init__(self):
 		
-		self.currentState = State.WAITING_FOR_DAY_TO_END
+		self.currentState = State.PRE_INIT
 		self.mealIndex = 0
 		self.mealList = []
 		self.catWaitTime = datetime.timedelta(minutes=1)
@@ -99,6 +100,10 @@ class FeedController():
 		meal = Meal(name, hour, servings)
 		self.mealList.append(meal)
 		#print("Adding to list: " + str(meal))
+
+	def start(self):
+		lastDate = datetime.date.today()
+		self.currentState = State.WAITING_FOR_DAY_TO_END
 
 #Return whether or not sense button is pushed...
 def isTriggerPushed():

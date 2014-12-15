@@ -7,6 +7,8 @@ import json
 import feedController
 import argparse
 
+
+
 def main():
 
 	if (sys.version_info[0] < 3):
@@ -17,9 +19,7 @@ def main():
 	parser.add_argument('jsonFile', help='A JSON file with mealtimes.')
 	args=parser.parse_args()
 
-
 	jsonData = json.loads(open(args.jsonFile, 'r', encoding='UTF-8').read().replace('\n',''))
-
 
 	controller = feedController.FeedController()
 
@@ -30,22 +30,17 @@ def main():
 	for meal in controller.mealList:
 		print(meal)		
 
-
 	print("Starting state machine!")
-	
+
+	controller.start()
+
 	while (1):
 		controller.update()
-
-
+		print(str(controller.currentState))
+	
 
 if __name__ == '__main__':
 	main()
-
-
-
-
-
-
 
 
 
